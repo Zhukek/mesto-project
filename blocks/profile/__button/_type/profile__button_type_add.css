@@ -1,0 +1,15 @@
+.profile__button_type_add {
+  border-width: 2px;
+  border-radius: 2px;
+  padding: 0;
+  margin: 0;
+  height: 50px;
+  align-self: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 880px) and (min-width: 660px) {
+  .profile__button_type_add {
+    grid-column: 1 / 3;
+  }
+}
