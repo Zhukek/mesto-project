@@ -9,7 +9,6 @@
 <body class="page">
   <header class="header">
     <img src="./images/logo.svg" alt="Место" class="header__logo">
-    <hr class="header__line">
   </header>
   <main class="content">
     <section class="profile">
@@ -17,72 +16,71 @@
         <div class="profile__info">
           <div class="profile__main">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button profile__button_type_edit"><img class="profile__edit-pic" src="./images/pen.svg" alt="ред."></button>
+            <button class="profile__button profile__button_type_edit" type="button"><img class="profile__edit-pic" src="./images/pen.svg" alt="ред."></button>
           </div>
-          <h2 class="profile__description">Исследователь океана</h2>
+          <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__button profile__button_type_add"><img class="profile__add-pic" src="./images/plus.svg" alt="доб."></button>
+        <button class="profile__button profile__button_type_add" type="button"><img class="profile__add-pic" src="./images/plus.svg" alt="доб."></button>
     </section>
     <section class="cards">
       <ul class="cards__list">
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/karachaevsk.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Карачаево-Черкессия</p>
-            <button class="card__button"><img class="card__like card__like_active" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Карачаево-Черкессия" src="./images/karachaevsk.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Карачаево-Черкессия</h2>
+            <button type="button" class="card__button"><img class="card__like card__like_active" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/Baikal.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Байкал</p>
-            <button class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Байкал" src="./images/baikal.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Байкал</h2>
+            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/elbrus.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Эльбрус</p>
-            <button class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Эльбрус" src="./images/elbrus.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Эльбрус</h2>
+            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/hibini.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Хибины</p>
-            <button class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Хибины" src="./images/hibini.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Хибины</h2>
+            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/rosa-hutor.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Роза-Хутор</p>
-            <button class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Роза-Хутор" src="./images/rosa-hutor.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Роза-Хутор</h2>
+            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
         <li class="card">
-          <img class="card__pic" alt="Изображение" src="./images/teriberka.jpg">
-          <div class="card__bottom">
-            <p class="card__text">Териберка</p>
-            <button class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+          <img class="card__pic" alt="Териберка" src="./images/teriberka.jpg">
+          <div class="card__description">
+            <h2 class="card__text">Териберка</h2>
+            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
           </div>
         </li>
       </ul>
     </section>
-    <section class="popup popup_opened">
-      <form class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <fieldset class="popup__input-container">
-          <input type="text" name="name" id="name" placeholder="Жак-Ив Кусто" class="popup__input">
-          <hr class="popup__line">
-          <input type="text" name="about" id="about" placeholder="Исследователь океана" class="popup__input">
-          <hr class="popup__line">
-          <input type="submit" class="popup__save-button" value="Сохранить">
-        </fieldset>
-        <button class="popup__close-button"><img class="popup__close-ico" src="./images/Close.svg" alt="Закрыть"></button>
-      </form>
-      <div class="popup__overlay"></div>
-    </section>
+    <div class="popup popup_opened">
+      <div class="popup__containeer">
+        <form class="popup__form" name="profile-form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <input type="text" name="name" id="name" placeholder="Введите имя" class="popup__input" required>
+            <input type="text" name="about" id="about" placeholder="О себе" class="popup__input">
+            <input type="submit" class="popup__save-button" value="Сохранить">
+          </fieldset>
+        </form>
+        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <p class="footer__author">&#169; 2020 Mesto Russia</p>

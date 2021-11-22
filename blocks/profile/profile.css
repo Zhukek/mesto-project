@@ -15,6 +15,6 @@
 @media screen and (max-width: 660px) {
   .profile {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 20px;
   }
 }
