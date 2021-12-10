@@ -24,66 +24,57 @@
     </section>
     <section class="cards">
       <ul class="cards__list">
-        <li class="card">
-          <img class="card__pic" alt="Карачаево-Черкессия" src="./images/karachaevsk.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Карачаево-Черкессия</h2>
-            <button type="button" class="card__button"><img class="card__like card__like_active" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__pic" alt="Байкал" src="./images/baikal.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Байкал</h2>
-            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__pic" alt="Эльбрус" src="./images/elbrus.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Эльбрус</h2>
-            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__pic" alt="Хибины" src="./images/hibini.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Хибины</h2>
-            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__pic" alt="Роза-Хутор" src="./images/rosa-hutor.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Роза-Хутор</h2>
-            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
-        <li class="card">
-          <img class="card__pic" alt="Териберка" src="./images/teriberka.jpg">
-          <div class="card__description">
-            <h2 class="card__text">Териберка</h2>
-            <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
-          </div>
-        </li>
       </ul>
     </section>
-    <div class="popup popup_opened">
+    <div class="popup" id="profilePopup">
       <div class="popup__containeer">
-        <form class="popup__form" name="profile-form">
+        <form class="popup__form" id="profile-form" name="profile-form">
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
-            <input type="text" name="name" id="name" placeholder="Введите имя" class="popup__input" required>
-            <input type="text" name="about" id="about" placeholder="О себе" class="popup__input">
+            <input type="text" name="name" id="name" placeholder="Введите имя" class="popup__input" required value="">
+            <input type="text" name="about" id="about" placeholder="О себе" class="popup__input" value="">
             <input type="submit" class="popup__save-button" value="Сохранить">
           </fieldset>
         </form>
         <button type="button" class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
       </div>
     </div>
+    <div class="popup" id="addCardPopup">
+      <div class="popup__containeer">
+        <form class="popup__form" id="addForm" name="addForm">
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__input-container">
+            <input type="text" name="PlaceName" id="PlaceName" placeholder="Название" class="popup__input" required value="">
+            <input type="url" name="PlaceLink" id="PlaceLink" placeholder="Ссылка на картинку" class="popup__input" required value="">
+            <input type="submit" class="popup__save-button" value="Создать">
+          </fieldset>
+        </form>
+        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+      </div>
+    </div>
+    <div class="popup" id="picPopup">
+      <div class="popup__pic-containeer">
+        <figure class="popup__figure">
+          <img class="popup__picture" alt="Картинка не загружена" src="#">
+          <figcaption class="popup__caption"></figcaption>
+      </figure>
+        <button class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+      </div>
+    </div>
   </main>
+  <template id="card-template">
+    <li class="card">
+      <img class="card__pic" alt="Картинка" src="#">
+      <div class="card__description">
+        <h2 class="card__text"></h2>
+        <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+      </div>
+      <button class="card__delete-button" type="button"></button>
+    </li>
+  </template>
   <footer class="footer">
-    <p class="footer__author">&#169; 2020 Mesto Russia</p>
+    <p class="footer__author">&#169; 2021 Mesto Russia</p>
   </footer>
+  <script src="./script.js"></script>
 </body>
 </html>
