@@ -12,6 +12,7 @@ const addPopup = document.querySelector('#addCardPopup');
 const editButton = document.querySelector('.profile__button_type_edit');
 const addButton = document.querySelector('.profile__button_type_add');
 
+const cardTemplate = document.querySelector('#card-template').content;
 const popupPicture = document.querySelector('.popup__picture')
 const popupCaption = document.querySelector('.popup__caption')
 const picPopup = document.querySelector('#picPopup');
@@ -83,16 +84,15 @@ popupProfileForm.addEventListener('submit', editProfile);
 /* Отправка формы Имя/професия */
 
 function createCard (item) {
-    const cardTemplate = document.querySelector('#card-template').content;
     const cardItem = cardTemplate.querySelector('.card').cloneNode(true);
-    cardItem.querySelector('.card__pic').src = initialCards[item].link;
+    cardItem.querySelector('.card__pic').src = item.link;
     cardItem.querySelector('.card__pic').addEventListener('click', function() {
       openPopup(picPopup);
       popupPicture.src = event.target.src;
       popupCaption.textContent = event.target.nextElementSibling.firstElementChild.textContent;
       popupPicture.alt = popupCaption.textContent;
     });   /* При нажатии на фото открывает попап с этим фото */
-    cardItem.querySelector('.card__text').textContent = initialCards[item].name;
+    cardItem.querySelector('.card__text').textContent = item.name;
     cardItem.querySelector('.card__button').addEventListener('click', function() {
       event.target.classList.toggle('card__like_active');
     });   /* Кнопка лайка */
@@ -103,7 +103,7 @@ function createCard (item) {
 }   /* Функция собирает карточку места */
 
 initialCards.forEach(function (_, num){
-  cardsList.prepend(createCard(num));
+  cardsList.prepend(createCard(initialCards[num]));
 });
 /* Добавляет базовые 6 карточек на странциу */
 
@@ -114,7 +114,7 @@ function addCard (evt) {
     link: placeLink.value
   });
   closePopup(evt);
-  cardsList.prepend(createCard(initialCards.length - 1));
+  cardsList.prepend(createCard(initialCards[initialCards.length - 1]));
   placeName.value = '';
   placeLink.value = '';
 }
