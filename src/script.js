@@ -53,6 +53,13 @@ updatePopup();
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+      popup.classList.remove('popup_opened');
+      document.removeEventListener('keydown', closePopupEsc);
+    }
+  };  /* функция для закрытия popup на esc */
+  document.addEventListener('keydown', closePopupEsc)
 };   /* функция открывает popup */
 
 function closePopup(evt) {
