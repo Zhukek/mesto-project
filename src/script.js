@@ -43,6 +43,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
   ];
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const forms = Array.from(document.querySelectorAll('.popup__form'))
 
 function updatePopup() {
   profileName.value =  pageName.textContent;
@@ -51,22 +53,31 @@ function updatePopup() {
 
 updatePopup();
 
+function closePopup() {
+  const popupOpened = document.querySelector('.popup_opened');
+  popupOpened.classList.remove('popup_opened');
+  document.removeEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
+};   /* Функция закрывает открытый попап */
+
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup();
+  }
+};  /* функция для закрытия popup на esc */
+
+function closePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup();
+  }
+}; /* функция для закрытия popup на click по overlay */
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-      popup.classList.remove('popup_opened');
-      document.removeEventListener('keydown', closePopupEsc);
-    }
-  };  /* функция для закрытия popup на esc */
-  document.addEventListener('keydown', closePopupEsc)
+  document.addEventListener('keydown', closePopupEsc);
+  document.addEventListener('click', closePopupOverlay);
 };   /* функция открывает popup */
 
-function closePopup(evt) {
-    evt.target.closest('.popup').classList.remove('popup_opened');
-};   /* Функция закрывает родительский попап */
-
-const closeButtons = document.querySelectorAll('.popup__close-button');
 closeButtons.forEach(function(button) {
   button.addEventListener('click', closePopup);
 });   /* Подключение функции closePopup ко всем кнопкам  popup__close-button*/
@@ -80,11 +91,80 @@ addButton.addEventListener('click', function() {
 });
 /* привязал функцию к кнопкам для открытия popup */
 
+
+const validationConfig = {
+  submitButton: 'popup__save-button',
+  submitButtonInactive: 'popup__save-button_disabled',
+  inputElement: 'popup__input',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__input-error_active'
+} /* Надо передавать в нее объект */
+
+forms.forEach(function(form) {
+  setValidation (form, validationConfig)
+}) /* Добавляет валидацию на все формы */
+
+function setValidation (form, config) {
+  const inputList = Array.from(form.querySelectorAll(`.${config.inputElement}`));
+
+  toggleButton(form, inputList, config);
+  inputList.forEach(function(input) {
+    input.addEventListener('input', function() {
+      checkValidation(form, input, config);
+      toggleButton(form, inputList, config);
+    });
+  }); /* Добавляет валидацию на инпуты */
+}
+
+function checkValidation (form, input, config) {
+  if (!input.validity.valid) {
+    showError(form, input, input.validationMessage, config);
+  } else {
+    hideError(form, input, config)
+  };
+} /* Проверяет валидацию инпута */
+
+function showError (form, input, errorMessage, config) {
+  const inputID = input.id;
+  const errorItem = form.querySelector(`.${inputID}-error`);
+  errorItem.classList.add(config.errorClass);
+  errorItem.textContent = errorMessage;
+  input.classList.add(config.inputErrorClass);
+} /* Показать ошибку при заполнении инпута */
+
+function hideError (form, input, config) {
+  const inputID = input.id;
+  const errorItem = form.querySelector(`.${inputID}-error`);
+  errorItem.classList.remove(config.errorClass);
+  errorItem.textContent = '';
+  input.classList.remove(config.inputErrorClass);
+} /* Спрятать ошибку при заполнении инпута */
+
+function hasInvalidInput(inputList) {
+  return inputList.some(function(input) {
+    return !input.validity.valid;
+  });
+} /* Проверяет правильность формы */
+
+function toggleButton(form, inputList, config) {
+  const saveButton = form.querySelector(`.${config.submitButton}`)
+
+  if (hasInvalidInput(inputList) === true) {
+    saveButton.classList.add(config.submitButtonInactive);
+  } else {
+    saveButton.classList.remove(config.submitButtonInactive);
+  };
+} /* Активирует/блокирует кнопку сабмита */
+
+
+
+
+
 function editProfile(evt) {
   evt.preventDefault();
   pageName.textContent = profileName.value;
   pageDescription.textContent = profileAbout.value;
-  closePopup(evt);
+  closePopup();
 };   /* Функция сохраняет изменения в профиле и закрывает popup*/
 
 popupProfileForm.addEventListener('submit', editProfile);
@@ -120,10 +200,12 @@ function addCard (evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  closePopup(evt);
+  closePopup();
   cardsList.prepend(createCard(initialCards[initialCards.length - 1]));
   placeName.value = '';
   placeLink.value = '';
+  const saveButton = addPopup.querySelector('.popup__save-button')
+  saveButton.classList.add('popup__save-button_disabled')
 }
 /* Функция добавляет карту места в массив и на страницу */
 popupAddForm.addEventListener('submit', addCard)

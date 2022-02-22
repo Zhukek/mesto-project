@@ -1,0 +1,18 @@
+.popup__field {
+  margin: 30px auto 0 auto;
+  padding: 0;
+  position: relative;
+  width: calc(100% - 72px);
+  height: fit-content;
+  display: block;
+}
+
+.popup__field:first-of-type {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__field {
+    width: calc(100% - 44px);
+  }
+}
