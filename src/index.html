@@ -4,23 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-    <img src="./images/logo.svg" alt="Место" class="header__logo">
+    <img src="<%=require('./images/logo.svg')%>" alt="Место" class="header__logo">
   </header>
   <main class="content">
     <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
         <div class="profile__info">
           <div class="profile__main">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button profile__button_type_edit" type="button"><img class="profile__edit-pic" src="./images/pen.svg" alt="ред."></button>
+            <button class="profile__button profile__button_type_edit" type="button"><img class="profile__edit-pic" src="<%=require('./images/pen.svg')%>" alt="ред."></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__button profile__button_type_add" type="button"><img class="profile__add-pic" src="./images/plus.svg" alt="доб."></button>
+        <button class="profile__button profile__button_type_add" type="button"><img class="profile__add-pic" src="<%=require('./images/plus.svg')%>" alt="доб."></button>
     </section>
     <section class="cards">
       <ul class="cards__list">
@@ -42,7 +41,7 @@
             <input type="submit" class="popup__save-button" value="Сохранить">
           </fieldset>
         </form>
-        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="<%=require('./images/close.svg')%>" alt="Закрыть"></button>
       </div>
     </div>
     <div class="popup" id="addCardPopup">
@@ -61,7 +60,7 @@
             <input type="submit" class="popup__save-button" value="Создать">
           </fieldset>
         </form>
-        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+        <button type="button" class="popup__close-button"><img class="popup__close-ico" src="<%=require('./images/close.svg')%>" alt="Закрыть"></button>
       </div>
     </div>
     <div class="popup" id="picPopup">
@@ -70,7 +69,7 @@
           <img class="popup__picture" alt="Картинка не загружена" src="#">
           <figcaption class="popup__caption"></figcaption>
       </figure>
-        <button class="popup__close-button"><img class="popup__close-ico" src="./images/close.svg" alt="Закрыть"></button>
+        <button class="popup__close-button"><img class="popup__close-ico" src="<%=require('./images/close.svg')%>" alt="Закрыть"></button>
       </div>
     </div>
   </main>
@@ -79,7 +78,7 @@
       <img class="card__pic" alt="Картинка" src="#">
       <div class="card__description">
         <h2 class="card__text"></h2>
-        <button type="button" class="card__button"><img class="card__like" src="./images/like.svg" alt="Лайк"></button>
+        <button type="button" class="card__button"><img class="card__like" src="<%=require('./images/like.svg')%>" alt="Лайк"></button>
       </div>
       <button class="card__delete-button" type="button"></button>
     </li>
@@ -87,10 +86,5 @@
   <footer class="footer">
     <p class="footer__author">&#169; 2021 Mesto Russia</p>
   </footer>
-  <script type="module" src="./index.js"></script>
-  <script type="module" src="./components/card.js"></script>
-  <script type="module" src="./components/modal.js"></script>
-  <script type="module" src="./components/util.js"></script>
-  <script type="module" src="./components/validate.js"></script>
 </body>
 </html>
