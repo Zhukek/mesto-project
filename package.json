@@ -1,0 +1,19 @@
+{
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "Это третья проектная работа на курсе **Яндекс**.Практикум.\r Здесь применяются полученные знания по созданию форм, адаптивной верстке и закрепляется уже пройденный материал.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zhukek/mesto-project.git"
+  },
+  "author": "Zhuk Ivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zhukek/mesto-project/issues"
+  },
+  "homepage": "https://github.com/Zhukek/mesto-project#readme"
+}

@@ -28,11 +28,17 @@
     </section>
     <div class="popup" id="profilePopup">
       <div class="popup__containeer">
-        <form class="popup__form" id="profile-form" name="profile-form">
+        <form class="popup__form" id="profile-form" name="profile-form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
-            <input type="text" name="name" id="name" placeholder="Введите имя" class="popup__input" required value="">
-            <input type="text" name="about" id="about" placeholder="О себе" class="popup__input" value="">
+            <label for="name" class="popup__field">
+              <input type="text" name="name" id="name" placeholder="Введите имя" class="popup__input" required value="" minlength="2" maxlength="40">
+              <span class="popup__input-error name-error"></span>
+            </label>
+            <label for="about" class="popup__field">
+              <input type="text" name="about" id="about" placeholder="О себе" class="popup__input" value="" required minlength="2" maxlength="200">
+              <span class="popup__input-error about-error"></span>
+            </label>
             <input type="submit" class="popup__save-button" value="Сохранить">
           </fieldset>
         </form>
@@ -41,11 +47,17 @@
     </div>
     <div class="popup" id="addCardPopup">
       <div class="popup__containeer">
-        <form class="popup__form" id="addForm" name="addForm">
+        <form class="popup__form" id="addForm" name="addForm" novalidate>
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="popup__input-container">
-            <input type="text" name="PlaceName" id="PlaceName" placeholder="Название" class="popup__input" required value="">
-            <input type="url" name="PlaceLink" id="PlaceLink" placeholder="Ссылка на картинку" class="popup__input" required value="">
+            <label for="PlaceName" class="popup__field">
+              <input type="text" name="PlaceName" id="PlaceName" placeholder="Название" class="popup__input" required value="" minlength="2" maxlength="30">
+              <span class="popup__input-error PlaceName-error"></span>
+            </label>
+            <label for="PlaceLink" class="popup__field">
+              <input type="url" name="PlaceLink" id="PlaceLink" placeholder="Ссылка на картинку" class="popup__input" required value="">
+              <span class="popup__input-error PlaceLink-error"></span>
+            </label>
             <input type="submit" class="popup__save-button" value="Создать">
           </fieldset>
         </form>
@@ -75,6 +87,10 @@
   <footer class="footer">
     <p class="footer__author">&#169; 2021 Mesto Russia</p>
   </footer>
-  <script src="./script.js"></script>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./components/card.js"></script>
+  <script type="module" src="./components/modal.js"></script>
+  <script type="module" src="./components/util.js"></script>
+  <script type="module" src="./components/validate.js"></script>
 </body>
 </html>
