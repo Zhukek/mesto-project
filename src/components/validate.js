@@ -1,12 +1,4 @@
-const forms = Array.from(document.querySelectorAll('.popup__form'));
-
-import { validationConfig } from '../index.js';
-
-forms.forEach(function(form) {
-  setValidation (form, validationConfig)
-}) /* Добавляет валидацию на все формы */
-
-function setValidation (form, config) {
+export function setValidation (form, config) {
   const inputList = Array.from(form.querySelectorAll(`.${config.inputElement}`));
 
   toggleButton(form, inputList, config);
