@@ -45,7 +45,9 @@ function toggleButton(form, inputList, config) {
 
   if (hasInvalidInput(inputList) === true) {
     saveButton.classList.add(config.submitButtonInactive);
+    saveButton.setAttribute("disabled", "disabled");
   } else {
     saveButton.classList.remove(config.submitButtonInactive);
+    saveButton.removeAttribute('disabled');
   };
 } /* Активирует/блокирует кнопку сабмита */

@@ -3,13 +3,13 @@ import { closePopupEsc, closePopupOverlay } from './modal.js';
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-  document.addEventListener('click', closePopupOverlay);
+  popup.addEventListener('click', closePopupOverlay);
 };   /* функция открывает popup */
 
 export function closePopup() {
   const popupOpened = document.querySelector('.popup_opened');
   popupOpened.classList.remove('popup_opened');
-  document.removeEventListener('click', closePopupOverlay);
+  popupOpened.removeEventListener('click', closePopupOverlay);
   document.removeEventListener('keydown', closePopupEsc);
 };   /* Функция закрывает открытый попап */
 
