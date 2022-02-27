@@ -5,6 +5,7 @@ const cardsList = document.querySelector('.cards__list');
 const placeName = document.querySelector('#PlaceName');
 const placeLink = document.querySelector('#PlaceLink');
 const picPopup = document.querySelector('#picPopup');
+const saveButton = addPopup.querySelector('.popup__save-button');
 
 import { initialCards } from "./util.js";
 import { addPopup } from "./modal.js";
@@ -13,6 +14,7 @@ import { closePopup, openPopup } from "./util.js";
 function createCard (item) {
   const cardItem = cardTemplate.querySelector('.card').cloneNode(true);
   cardItem.querySelector('.card__pic').src = item.link;
+  cardItem.querySelector('.card__pic').alt = item.name;
   cardItem.querySelector('.card__pic').addEventListener('click', function(evt) {
     openPopup(picPopup);
     popupPicture.src = evt.target.src;
@@ -44,7 +46,7 @@ closePopup();
 cardsList.prepend(createCard(initialCards[initialCards.length - 1]));
 placeName.value = '';
 placeLink.value = '';
-const saveButton = addPopup.querySelector('.popup__save-button')
-saveButton.classList.add('popup__save-button_disabled')
+saveButton.classList.add('popup__save-button_disabled');
+saveButton.setAttribute("disabled", "disabled");
 }
 /* Функция добавляет карту места в массив и на страницу */
