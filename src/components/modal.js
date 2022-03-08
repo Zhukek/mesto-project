@@ -1,20 +1,24 @@
 const profileName = document.querySelector('#name');
 const profileAbout = document.querySelector('#about');
-const pageName = document.querySelector('.profile__name');
-const pageDescription = document.querySelector('.profile__description');
+const avatarLink = document.querySelector('#avatarLink');
 const editButton = document.querySelector('.profile__button_type_edit');
 const addButton = document.querySelector('.profile__button_type_add');
 const profilePopup = document.querySelector('#profilePopup');
+const avatarPopup = document.querySelector('#avatarPopup');
+const avatarButton = document.querySelector('.profile__avatar-change');
 export const addPopup = document.querySelector('#addCardPopup');
+export const pageName = document.querySelector('.profile__name');
+export const pageDescription = document.querySelector('.profile__description');
+export const profileAvatar = document.querySelector('.profile__avatar');
 
 import { closePopup, openPopup } from "./util.js";
+import { updateUserInfo } from "./api.js";
+import { updateAvatar } from "./api.js";
 
-function updatePopup() {
+export function updatePopup() {
   profileName.value =  pageName.textContent;
   profileAbout.value =  pageDescription.textContent;
 };   /* Обновляет значения input в popup профиля */
-
-updatePopup();
 
 export function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
@@ -35,11 +39,29 @@ editButton.addEventListener('click', function() {
 addButton.addEventListener('click', function() {
   openPopup(addPopup);
 });
+avatarButton.addEventListener('click', function() {
+  openPopup(avatarPopup);
+});
 /* привязал функцию к кнопкам для открытия popup */
 
 export function editProfile(evt) {
   evt.preventDefault();
-  pageName.textContent = profileName.value;
-  pageDescription.textContent = profileAbout.value;
-  closePopup();
+  const saveButton = profilePopup.querySelector('.popup__save-button');
+  saveButton.value = 'Сохранение...';
+  updateUserInfo({name: profileName.value, about: profileAbout.value}, pageName, pageDescription)
+    .finally(() => {
+      saveButton.value = 'Сохранить';
+      closePopup();
+    })
 };   /* Функция сохраняет изменения в профиле и закрывает popup*/
+
+export function editAvatar(evt) {
+  evt.preventDefault();
+  const saveButton = avatarPopup.querySelector('.popup__save-button');
+  saveButton.value = 'Сохранение...';
+  updateAvatar({avatar: avatarLink.value}, profileAvatar)
+  .finally(() => {
+    saveButton.value = 'Сохранить';
+    closePopup();
+  })
+}

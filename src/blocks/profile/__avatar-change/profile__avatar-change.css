@@ -1,0 +1,17 @@
+.profile__avatar-change {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #000;
+  cursor: pointer;
+  position: relative;
+}
+
+@media screen and (max-width: 660px) {
+  .profile__avatar-change {
+    justify-self: center;
+  }
+}

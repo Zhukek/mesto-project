@@ -1,13 +1,15 @@
 const popupProfileForm = document.querySelector('#profile-form');
 const popupAddForm = document.querySelector('#addForm');
+const popupAvatarForm = document.querySelector('#avatarForm');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const forms = Array.from(document.querySelectorAll('.popup__form'));
 
-import { editProfile } from "./components/modal.js";
-import { addCard } from "./components/card.js";
+import { addCard, createCard, cardsList } from "./components/card.js";
 import { closePopup } from "./components/util.js";
 import { setValidation } from "./components/validate.js";
-import './pages/index.css'
+import { editProfile, editAvatar, pageName, pageDescription, profileAvatar, updatePopup } from "./components/modal.js";
+import { getInfo } from "./components/api.js";
+import './pages/index.css';
 
 export const validationConfig = {
   submitButton: 'popup__save-button',
@@ -26,7 +28,30 @@ closeButtons.forEach(function(button) {
 });   /* Подключение функции closePopup ко всем кнопкам  popup__close-button*/
 
 popupProfileForm.addEventListener('submit', editProfile);
-/* Отправка формы Имя/професия */
+popupAvatarForm.addEventListener('submit', editAvatar);
+/* Отправка форм Имя/професия или аватар */
 
-popupAddForm.addEventListener('submit', addCard)
+popupAddForm.addEventListener('submit', addCard);
 /* Добавляет карточку из формы */
+
+const userPromise = getInfo('/users/me');
+const cardsPromise = getInfo('/cards');
+const getPromises = [userPromise, cardsPromise];
+Promise.all(getPromises)
+  .then((data) => {
+    const aboutUser = data[0];
+    const allCards = data[1];
+
+    pageName.textContent = aboutUser.name;
+    pageDescription.textContent = aboutUser.about;
+    profileAvatar.src = aboutUser.avatar;
+    /* Получить начальные данные пользователя */
+
+    allCards.forEach(function(item) {
+      cardsList.append(createCard(item, aboutUser));
+    })
+    /* добавляет карточки с сервера на страницу */
+  })
+  .catch((err) => {
+    console.log(err);
+  });
