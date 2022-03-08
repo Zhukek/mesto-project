@@ -32,14 +32,24 @@ export function closePopupOverlay(evt) {
   }
 }; /* функция для закрытия popup на click по overlay */
 
+function resetPopupIfWrong(popup) {
+  const form = popup.querySelector('.popup__form');
+  const submitButton = form.querySelector('.popup__save-button');
+  if (submitButton.classList.contains('popup__save-button_disabled')) {
+    form.reset();
+  }
+}
+
 editButton.addEventListener('click', function() {
   openPopup(profilePopup);
   updatePopup();
 });
 addButton.addEventListener('click', function() {
+  resetPopupIfWrong(addPopup);
   openPopup(addPopup);
 });
 avatarButton.addEventListener('click', function() {
+  resetPopupIfWrong(avatarPopup);
   openPopup(avatarPopup);
 });
 /* привязал функцию к кнопкам для открытия popup */
@@ -49,9 +59,14 @@ export function editProfile(evt) {
   const saveButton = profilePopup.querySelector('.popup__save-button');
   saveButton.value = 'Сохранение...';
   updateUserInfo({name: profileName.value, about: profileAbout.value}, pageName, pageDescription)
+    .then(() => {
+      closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     .finally(() => {
       saveButton.value = 'Сохранить';
-      closePopup();
     })
 };   /* Функция сохраняет изменения в профиле и закрывает popup*/
 
@@ -60,8 +75,13 @@ export function editAvatar(evt) {
   const saveButton = avatarPopup.querySelector('.popup__save-button');
   saveButton.value = 'Сохранение...';
   updateAvatar({avatar: avatarLink.value}, profileAvatar)
-  .finally(() => {
-    saveButton.value = 'Сохранить';
-    closePopup();
-  })
+    .then(() => {
+      closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      saveButton.value = 'Сохранить';
+    })
 }

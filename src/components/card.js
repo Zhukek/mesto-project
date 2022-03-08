@@ -37,6 +37,9 @@ export function createCard (item, user) {
       .then(() => {
         evt.target.closest('.card').remove();
       })
+      .catch((err) => {
+        console.log(err);
+      })
     });   /* Кнопка удаляет карточку*/
   } else {
     deleteButton.remove();
@@ -49,12 +52,22 @@ function clickOnLike(evt, item, likeCounter) {
 const card = evt.target.closest('.card');
   if (card.dataset.isLiked === 'true') {
     likeIt(item._id, 'DELETE', likeCounter)
-    card.dataset.isLiked = 'false';
-    evt.target.classList.remove('card__like_active');
+      .then(() => {
+        card.dataset.isLiked = 'false';
+        evt.target.classList.remove('card__like_active');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   } else {
-    likeIt(item._id, 'PUT', likeCounter);
-    card.dataset.isLiked = 'true';
-    evt.target.classList.add('card__like_active');
+    likeIt(item._id, 'PUT', likeCounter)
+      .then(() => {
+        card.dataset.isLiked = 'true';
+        evt.target.classList.add('card__like_active');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 } /* Логика работы кнопки лайка */
 
@@ -70,16 +83,21 @@ function isLiked(cardItem, item, user) {
 export function addCard(evt) {
 evt.preventDefault();
 const saveButton = addPopup.querySelector('.popup__save-button');
-saveButton.value = 'Сохранение...'
-console.log(evt.target)
+saveButton.value = 'Сохранение...';
 addCradRequest({name: placeName.value, link: placeLink.value})
   .then((data) => {
     cardsList.prepend(createCard(data, data.owner));
-    console.log(data)
+  })
+  .then(() => {
+    saveButton.classList.add('popup__save-button_disabled');
+    saveButton.setAttribute("disabled", "disabled");
+    closePopup();
+  })
+  .catch((err) => {
+    console.log(err);
   })
   .finally(() => {
-    saveButton.value = 'Создать'
-    closePopup();
+    saveButton.value = 'Создать';
   })
 }
 /* Функция добавляет карту места в массив и на страницу */
