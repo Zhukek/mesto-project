@@ -11,5 +11,4 @@ export function closePopup() {
   popupOpened.classList.remove('popup_opened');
   popupOpened.removeEventListener('click', closePopupOverlay);
   document.removeEventListener('keydown', closePopupEsc);
-  popupOpened.querySelector('.popup__form').reset();
 };   /* Функция закрывает открытый попап */
