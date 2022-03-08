@@ -11,9 +11,6 @@ function checkAndGo(res) {
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 }
-function catchError(err) {
-  console.log(err);
-}
 
 export function getInfo(way) {
   return fetch(config.baseURL+way, {
@@ -37,7 +34,6 @@ export function updateUserInfo(inbody, pageName, pageAbout) {
       pageName.textContent = data.name;
       pageAbout.textContent = data.about;
     })
-    .catch(catchError);
 } /* Редактирует инфо в профиле */
 
 export function updateAvatar(inbody, avatar) {
@@ -45,7 +41,6 @@ export function updateAvatar(inbody, avatar) {
     .then((data) => {
       avatar.src = data.avatar;
     })
-    .catch(catchError);
 } /* Обновляет аватар */
 
 export function likeIt(cardId, whatToDo, likeCounter) {
@@ -57,7 +52,6 @@ export function likeIt(cardId, whatToDo, likeCounter) {
   .then((data) => {
     likeCounter.textContent = data.likes.length;
   })
-  .catch(catchError);
 } /* Отправляет или удаляет лайк, и обновляет занчение в счетчике */
 
 export function addCradRequest(inbody) {
@@ -67,7 +61,6 @@ export function addCradRequest(inbody) {
     body: JSON.stringify(inbody)
   })
   .then(checkAndGo)
-  .catch(catchError);
 }/* Запрос на добавление карточки */
 
 export function deleteCard(cardID) {
@@ -76,5 +69,4 @@ export function deleteCard(cardID) {
     headers: config.headers
   })
   .then(checkAndGo)
-  .catch(catchError)
 }/* Запрос на удаление карточки */
